@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Earthquake Data Test</title>
+</head>
+<body>
+  <h1>Earthquake Data Test</h1>
+
+  <input type="number" id="earthquakeIndex" placeholder="Enter earthquake index">
+  <button type="button" id="getEarthquakeData">Get Earthquake Data</button>
+
+  <div id="earthquakeData"></div>
+
+  <script>
+    const web3 = new Web3('http://localhost:7545');
+
+    const contractAddress = '0x9a3103107803e9cD86750a4b02893772F0202212'; // Replace this with the address of your smart contract
+
+    const contract = new web3.eth.Contract([
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "index",
+            "type": "uint256"
+          }
+        ],
+        "name": "getEarthquakeData",
+        "outputs": [
+          {
+            "internalType": "string",
+            "name": "Time",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "Depth",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "City",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "magnitude",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ], contractAddress);
+
+    document.getElementById('getEarthquakeData').addEventListener('click', async () => {
+      const earthquakeIndex = document.getElementById('earthquakeIndex').value;
+
+      const earthquakeData = await contract.methods.getEarthquakeData(earthquakeIndex).call();
+
+      document.getElementById('earthquakeData').innerHTML = `
+        <h2>Earthquake Data</h2>
+        <p>Time: ${earthquakeData.Time}</p>
+        <p>Depth: ${earthquakeData.Depth}</p>
+        <p>City: ${earthquakeData.City}</p>
+        <p>Magnitude: ${earthquakeData.magnitude}</p>
+      `;
+    });
+  </script>
+</body>
+</html>
+
