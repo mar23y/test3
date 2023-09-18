@@ -6,8 +6,24 @@
 <body>
   <h1>Earthquake Data Test</h1>
 
-  <input type="number" id="earthquakeIndex" placeholder="Enter earthquake index">
-  <button type="button" id="getEarthquakeData">Get Earthquake Data</button>
+  <input type="number1" id="earthquakeIndex1" placeholder="Enter earthquake index1"> 
+  <button type="button1" id="getEarthquakeData1">Get Earthquake Data</button>
+
+  <input type="number1" id="earthquakeIndex2" placeholder="Enter earthquake index2"> 
+  <button type="button1" id="getEarthquakeData2">Get Earthquake Data</button>
+
+  <input type="number1" id="earthquakeIndex3" placeholder="Enter earthquake index3"> 
+  <button type="button1" id="getEarthquakeData3">Get Earthquake Data</button>
+
+  <input type="number1" id="earthquakeIndex4" placeholder="Enter earthquake index4"> 
+  <button type="button1" id="getEarthquakeData4">Get Earthquake Data</button>
+
+  <input type="number1" id="earthquakeIndex5" placeholder="Enter earthquake index5"> 
+  <button type="button1" id="getEarthquakeData5">Get Earthquake Data</button>
+
+
+  
+
 
   <div id="earthquakeData"></div>
 
@@ -56,8 +72,16 @@
     document.getElementById('getEarthquakeData').addEventListener('click', async () => {
       const earthquakeIndex = document.getElementById('earthquakeIndex').value;
 
-      const earthquakeData = await contract.methods.getEarthquakeData(earthquakeIndex).call();
+      const earthquakeData1 = await contract.methods.getEarthquakes1(earthquakeIndex).call();
 
+      const earthquakeData2 = await contract.methods.getEarthquakes2(earthquakeIndex).call();
+
+      const earthquakeData3 = await contract.methods.getEarthquakes3(earthquakeIndex).call();
+
+      const earthquakeData4 = await contract.methods.getEarthquakes4(earthquakeIndex).call();
+
+      const earthquakeData5 = await contract.methods.getEarthquakes5(earthquakeIndex).call();
+      
       document.getElementById('earthquakeData').innerHTML = `
         <h2>Earthquake Data</h2>
         <p>Time: ${earthquakeData.Time}</p>
@@ -69,4 +93,3 @@
   </script>
 </body>
 </html>
-
